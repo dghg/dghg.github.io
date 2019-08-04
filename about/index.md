@@ -5,8 +5,6 @@ tags: [about, Jekyll, theme, moon]
 date: 2016-03-21
 comments: false
 ---
-    
-<center><a href="http://taylantatli.github.io/Moon"></center>
 
 ## Interested In 
 * Machine Learning
