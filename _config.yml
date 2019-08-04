@@ -29,11 +29,12 @@ sass:
 # Comments
 disqus_shortname:   taylantatli
 
+g-analytics: UA-145111438-1
 # Social
 # if you don't have any of social below, comment the line.
 #google:
   #plus:            #username
-  analytics: UA-145111438-1
+#  analytics: UA-145111438-1
   #verify:
   #ad-client:
   #ad-slot:
