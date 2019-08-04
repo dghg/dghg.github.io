@@ -2,6 +2,7 @@
 layout: post
 title: "Batch Normalization(2015)"
 date: 2019-07-29 00:00:00
+excerpt: "Batch Normalization 정리와 구현"  
 tags:
 - ML
 - DEEPLearning
@@ -50,8 +51,8 @@ Network의 출력인 z 는 **z = g(Wu+b)** 처럼 표현됩니다. 하지만 CNN
 자체적인 regularizer 효과로, 기존에 사용하던 기법인 weight decay나 Dropout 없이도 overfitting을 막을 수 있습니다.
 
 ### 7. Experiment
-간단하게 MNIST 데이터셋을 이용하여 실험 해보았습니다.  
-공통적으로 128의 Batch Size, 30번의 EPOCH을 돌렸고
+간단하게 MNIST 데이터셋을 이용하여 실험 해보았습니다. 아무런 전처리 없이  
+공통적으로 128의 Batch Size, 30번의 EPOCH, weight 초기화의 경우 mean=0, variance=0.01의 정규분포로 초기화하였습니다.  
 BN을 적용하지 않은 Network의 경우,   
  1) 2개의 Convolution Layer(32개의 3\*3, 64개의 3\*3)와 2개의 2 by 2 Maxpooling,  
    2개의 FC Layer(크기 1024와 10) 1개의 Dropout layer  
@@ -61,5 +62,15 @@ BN을 적용한 Network는 위에서 Dropout Layer만 제거한 이후
 2) 0.01의 learning rate로 학습  
 과정을 거쳤습니다. 
 
-간단하게 30개의 EPOCH을 거친 후 결과는 다음과 같습니다.  
+간단하게 30개의 EPOCH을 거친 후 Test Set에서의 Loss 결과는 다음과 같습니다.  
 ![INFwBN](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/8.PNG) 
+이를 통해, 단지 normalization만 해줬을 뿐이지만 모델의 성능이 향상 된 것을 알 수 있습니다. 이외에도 weight 초기값을 mean=10, variance=1로 초기화하고 학습을 진행했을 때도 LOSS값이 기존 네트워크와 비슷하게 수렴합니다. 이를 통해 normalize만 해줬을 뿐이지만 네트워크 성능이 크게 향상된 것을 알 수 있습니다.  
+  
+### 8. Conclusion
+요약하자면, Batch Normalization 기법은  
+**Input의 분포를 안정화 시키기 위해,(Internal Covariate Shift를 줄이기 위해)  
+1) 네트워크에 들어가는 Input을 Normalize 해준다.  
+2) 여기다 scaling/shifting factor를 학습시킨다.**  
+로 정리할 수 있습니다.  
+  
+이를 통해 learning rate를 높일 수 있고, Dropout같은 regularizer의 의존도를 줄여 빠른 모델 학습이 가능하게 합니다. 
