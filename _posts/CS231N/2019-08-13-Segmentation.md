@@ -51,15 +51,33 @@ Maxpooling 과정에서, 가장 큰 원소의 위치를 저장해둡니다. 이�
 이렇듯 filter를 이용해 input 값 하나를 여러개로 대응시킬 수 있습니다. ( $$ R \mapsto R^k $$)  
 또한 이런 방법을 matrix 관점에서 살펴볼 수 있습니다.  
 Input이 $$ [x, y, z] $$ 이고 Filter가 $$ [a, b, c, d] $$,  인 1D Convolution을 생각해 보면, (stride=1) 다음과 같이 나타낼 수 있습니다.  
-$$$$
-    \begin{matrix}
-    0 $ x & y & z $ 0 \\
-    0 & 0 & a $ b $ c \\
-    0 & a & b $ c $ d \\
-    a $ b $ c $ d $ 0 \\
-    b $ c $ d $ 0 $ 0 \\
-    \end{matrix}
-$$$$
+$$ \\\begin{matrix} 0 $ x & y & z $ 0 \\ 0 & 0 & a $ b $ c \\ 0 & a & b $ c $ d \\a $ b $ c $ d $ 0 \\b $ c $ d $ 0 $ 0 \\ \\\end{matrix} $$  
+  
+이를 Matrix의 곱셈으로 바라본다면 다음과 같이 나타낼 수 있습니다.
+
+$$
+    \\\begin{pmatrix}
+    x & y & z $ 0 $ 0 $ 0 \\ 
+    0 & x & y $ z $ 0 $ 0 \\ 
+    0 & 0 & x $ y $ z $ 0 \\ 
+    0 $ 0 $ 0 $ x $ y $ z \\
+    \\\end{pmatrix}
+    \\\begin{pmatrix}
+    0 \\ 
+    a \\ 
+    b \\ 
+    c \\
+    d \\
+    0 \\
+    \\\end{pmatrix}  
+    =
+    \\\begin{pmatrix}
+    ay+bz \\ 
+    ax+by+cz \\ 
+    bx+cy+dz \\ 
+    cx+dy \\
+    \\\end{pmatrix}      
+$$
 
 
 ### 2. Classification + Localization<a name="classf"></a>
