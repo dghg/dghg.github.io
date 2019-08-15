@@ -56,12 +56,13 @@ $$ \\\begin{matrix} 0 $ x & y & z $ 0 \\ 0 & 0 & a $ b $ c \\ 0 & a & b $ c $ d 
 이를 Matrix의 곱셈으로 바라본다면 다음과 같이 나타낼 수 있습니다.
 
 $$
-    \\\begin{pmatrix}
+X\vec(a)=
+    \begin{pmatrix}  
     x & y & z $ 0 $ 0 $ 0 \\ 
     0 & x & y $ z $ 0 $ 0 \\ 
     0 & 0 & x $ y $ z $ 0 \\ 
     0 $ 0 $ 0 $ x $ y $ z \\
-    \\\end{pmatrix}
+    \end{pmatrix}
     \\\begin{pmatrix}
     0 \\ 
     a \\ 
