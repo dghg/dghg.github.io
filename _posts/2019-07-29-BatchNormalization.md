@@ -4,8 +4,7 @@ title: "Batch Normalization(2015)"
 date: 2019-07-29 00:00:00
 excerpt: "Batch Normalization 정리와 구현"  
 tags:
-- ML
-- DEEPLearning
+- Study
 categories:
 - 공부
 ---

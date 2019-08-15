@@ -5,9 +5,6 @@ date: 2019-08-13 00:00:00
 excerpt: "이 글은 CS231n 11강을 정리한 것입니다. "  
 tags:
 - CS231N
-- 딥러닝
-- CNN
-- 공부
 categories:
 - 공부
 ---
@@ -51,7 +48,7 @@ Maxpooling 과정에서, 가장 큰 원소의 위치를 저장해둡니다. 이�
 ##### 방법4. Transpose Convolution
 값 1개를 이용해 n개의 값을 얻어낼 수 있게 filter를 사용해  upsampling을 합니다.  
 ![trans](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/13-seg.PNG)
-이렇듯 filter를 이용해 input 값 하나를 여러개로 대응시킬 수 있습니다. ( $$ R \Righarrow R^k $$)  
+이렇듯 filter를 이용해 input 값 하나를 여러개로 대응시킬 수 있습니다. ( $$ R \mapsto R^k $$)  
 또한 이런 방법을 matrix 관점에서 살펴볼 수 있습니다.  
 Input이 $$ [x, y, z] $$ 이고 Filter가 $$ [a, b, c, d] $$,  인 1D Convolution을 생각해 보면, (stride=1) 다음과 같이 나타낼 수 있습니다.  
 $$$$
