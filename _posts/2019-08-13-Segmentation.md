@@ -49,6 +49,19 @@ downsampling의 경우는 pooling 등을 이용하면 되는데, 여기서 문�
 Maxpooling 과정에서, 가장 큰 원소의 위치를 저장해둡니다. 이후 unpooling 시 그 위치를 사용해 upsampling을 진행합니다.
 
 ##### 방법4. Transpose Convolution
+값 1개를 이용해 n개의 값을 얻어낼 수 있게 filter를 사용해  upsampling을 합니다.  
+![trans](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/13-seg.PNG)
+이렇듯 filter를 이용해 input 값 하나를 여러개로 대응시킬 수 있습니다. ( $$ R \Righarrow R^k $$)  
+또한 이런 방법을 matrix 관점에서 살펴볼 수 있습니다.  
+Input이 $$ [x, y, z] $$ 이고 Filter가 $$ [a, b, c, d] $$,  인 1D Convolution을 생각해 보면, (stride=1) 다음과 같이 나타낼 수 있습니다.  
+$$
+    \begin{matrix}
+    1 & x & x^2 \\
+    1 & y & y^2 \\
+    1 & z & z^2 \\
+    \end{matrix}
+$$
+
 
 ### 2. Classification + Localization<a name="classf"></a>
 ### 3. Object Detection<a name="obj"></a>
