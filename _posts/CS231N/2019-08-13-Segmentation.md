@@ -97,19 +97,31 @@ Localization은, 객체가 어디에 존재하는지 영역을 bounding box로 �
 
 ### 3. Object Detection<a name="obj"></a>  
 Object Detection은 기존과 달리 image 내에 있는 모든 객체를 찾아내는 것입니다. 모델의 출력으로 각각의 object마다 bounding box를 만들게 됩니다.  
-#### As Regression ?  
+이 강의에선 총 다섯개의 방법이 소개가 되었습니다.  
+
+#### 1) As Regression ?  
 Localization의 기본 아이디어처럼 각각의 object마다 bounding box를 regression 방식으로 구할 수 있습니다. 하지만 이런 방식은 모델의 입력인 이미지가 매번 달라져 출력의 갯수도 항상 달라진다는 것입니다.
 
-#### Sliding Window
+#### 2) Sliding Window
 Image를 조각내 CNN의 입력으로 넣어 classification을 진행합니다 .하지만 이런 방식은 계산량이 매우 많습니다.
 
 #### Region Proposals  
 물체가 있을만한 Region을 Selective-Search를 이용해 찾아냅니다. 
 
-#### R-CNN  
+#### 3) R-CNN  
 위에서 소개한 Selective Search 방식으로 물체가 있을만한 부분인 ROI(Regions Of Interests)를 찾아냅니다.(~2K) 이후 CNN에 입력으로 넣기 위해 fixed-size square로 region을 조절합니다.  
 이러한 방식은 Sliding-Window 방식에 비해 낫긴 하지만, 학습시간이 오래걸리고 또한 Inference 과정에도 시간이 오래걸립니다.(47s in VGG16)  
 
-#### Fast R-CNN
-ROI를 설정하는 대신, 전체 Image를 우선 CNN에 입력으로 넣고, 출력인  Feature Map 에서 ROI를 선정합니다. 
+#### 4) Fast R-CNN
+R-CNN의 문제인 train,inference 속도가 너무 느리다는 단점을 극복하기 위해 Fast R-CNN에서는 ROI를 설정하는 대신, 전체 Image를 우선 CNN에 입력으로 넣고, 출력인  Feature Map 에서 ROI를 선정합니다.  
+이렇게 진행함으로써 Convolution Layer를 한번만 거치므로 속도가 더욱 향상됩니다. 또한 fixed-size square를 얻는 과정은 "ROI Pooling"을 통해 진행됩니다. 이 모든 과정을 다음과 같이 나타낼 수 있습니다.
+![FastRCNN](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/16-seg.PNG)   
+  
+이렇게 Fast R-CNN을 사용함으로써 기존에 비해 속도를 향상시킬 수 있었으나, 전체 속도가 Region Proposals 과정의 유무에 따라 크게 차이가 발생합니다.
+  
+  
+#### 5) Faster R-CNN
+Fast R-CNN의 문제인 Region Proposal이 러닝타임에 큰 영향을 미치는 것을 해결하기 위해, Region Proposal 자체를 CNN 내부에서 수행하게 합니다.  
+이를 위해 **Region Proposal Network**를 도입하게 됩니다. 이 네트워크는 feature-map을 인풋으로 받아 Object 유무와 proposal을 출력으로 내놓게 됩니다.  
+
 ### 4. Instance Segmentation<a name="inst"></a>
