@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Batch Normalization(2015)"
+title: "Batch Normalization(2015) : Accelerating deep network training by reducing internal covariate shift."
 date: 2019-07-29 00:00:00
-excerpt: "Batch Normalization 정리와 구현"  
+excerpt: "Batch Normalization 정리"  
 tags:
 - Study
 categories:
