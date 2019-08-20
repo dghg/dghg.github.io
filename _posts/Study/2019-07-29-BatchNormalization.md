@@ -15,6 +15,8 @@ categories:
 4. [BN In CNN](#cnn)
 5. [Effect of BN](#effect)
 6. [Experiment](#exp)
+7. [Conclusion](#con)
+8. [Tensorflow로의 구현](#tf)
 
 
 ### 1. Abstract <a name="abstract"></a>
@@ -73,7 +75,7 @@ BN을 적용한 Network는 위에서 Dropout Layer만 제거한 이후
 ![INFwBN](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/8.PNG) 
 이를 통해, 단지 normalization만 해줬을 뿐이지만 모델의 성능이 향상 된 것을 알 수 있습니다. 이외에도 weight 초기값을 mean=10, variance=1로 초기화하고 학습을 진행했을 때도 LOSS값이 기존 네트워크와 비슷하게 수렴합니다. 이를 통해 normalize만 해줬을 뿐이지만 네트워크 성능이 크게 향상된 것을 알 수 있습니다.  
   
-### 8. Conclusion
+### 8. Conclusion<a name="con"></a>
 요약하자면, Batch Normalization 기법은  
 **Input의 분포를 안정화 시키기 위해,(Internal Covariate Shift를 줄이기 위해)  
 1) 네트워크에 들어가는 Input을 Normalize 해준다.  
@@ -81,3 +83,6 @@ BN을 적용한 Network는 위에서 Dropout Layer만 제거한 이후
 로 정리할 수 있습니다.  
   
 이를 통해 learning rate를 높일 수 있고, Dropout같은 regularizer의 의존도를 줄여 빠른 모델 학습이 가능하게 합니다. 
+  
+  
+### Tensorflow로의 구현 <a name="tf"></a>

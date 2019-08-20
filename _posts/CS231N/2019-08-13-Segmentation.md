@@ -124,4 +124,16 @@ R-CNN의 문제인 train,inference 속도가 너무 느리다는 단점을 극�
 Fast R-CNN의 문제인 Region Proposal이 러닝타임에 큰 영향을 미치는 것을 해결하기 위해, Region Proposal 자체를 CNN 내부에서 수행하게 합니다.  
 이를 위해 **Region Proposal Network**를 도입하게 됩니다. 이 네트워크는 feature-map을 인풋으로 받아 Object 유무와 proposal을 출력으로 내놓게 됩니다.  
 
-### 4. Instance Segmentation<a name="inst"></a>
+#### 6) YOLO  
+[YOLO : You Only Look Once](https://dghg.github.io/YOLO/)  
+  
+### 4. Instance Segmentation<a name="inst"></a>  
+마지막으로 살펴볼 Instance Segmentaion은 , Bouding Box를 너머 각 pixel마다 객체인지 아닌지 masking을 진행하는 것입니다. 
+  
+### 5. 요약  
+1. Semantic Segmentation, Localization, Detection에 CNN을 이용할 수 있다.
+2. Localization 문제는 BBs를 regression 문제로 정의해 해결한다.
+3. Detection 문제를 해결하기 위해 Region Proposals 방식이나 RPN 방식을 사용했다.  
+
+### References
+[CS231N : Lecture 11](https://www.youtube.com/watch?v=nDPWywWRIRo&list=PL3FW7Lu3i5JvHM8ljYj-zLfQRF3EO8sYv&index=11)
