@@ -9,13 +9,15 @@ categories:
 - 공부
 ---
 ## Table of Contents
-1. [Visualizing CNN](#visual)
-
+1. [Understanding CNN Layer](#ustd)
+2. [Visualizing CNN Features](#visual)  
+  
+  
 ### 0. 도입
-CS231N 12강에서는 전에 배웠던 Convolution 네트워크의 Layer들이 어떤 특성을 가지는지, 또한 각 Layer들을 visualizing 하면 어떻게 되는지 등을 공부합니다.  
+CS231N 12강에서는 Visualizing 등 기법을 통해 네트워크를 해석하는 방법을 배웁니다. 이를 통해 각 Layer에서는 어떤 일이 일어나고 있는지 알 수 있어 CNN의 이해에 도움이 될 수 있습니다. 이에 관련해 CS231N 12강 50:50부터 나와있습니다.
   
     
-### 1. Visualizing CNN<a name="visual"></a>
+### 1. Understanding CNN Layer<a name="ustd"></a>
 CNN의 공통적인 특성은 바로 Input이 raw pixel 이고, output이 labeling score라는 점입니다. 이 외에는 각 모델마다 사용하는 filter size도 다르고, layer의 갯수도 다 다르기 때문에 일반화해서 분석하기는 힘듭니다.
   
 ##### 1. 1st Layer 
@@ -41,13 +43,53 @@ Last Layer를 분석하는 두번째 방법으로, Dimensionality Reduction을 �
   
 ##### 4. Visualzing Activation Map
 activation map을 분석하는 경우 몇몇 case에서는 유의미한 결과가 나타납니다. 여기선 예시로 Alexnet을 사용합니다.  
-예를 들어, Alexnet의 conv5의 activation map은 $$ 128 \times 13 \ times 13 $$ 이고 이것의 feature-map들을 살펴보다보면, 사람의 얼굴과 비슷한 뉴런이 보이기도 합니다. 
+예를 들어, Alexnet의 conv5의 activation map은 $$ 128 \times 13 \times 13 $$ 이고 이것의 feature-map들을 살펴보다보면, 사람의 얼굴과 비슷한 뉴런이 보이기도 합니다. 
 
 ##### 5. Maximally Activating patches
-위와 마찬가지로, 128개의 $$ 13 \ times 13 $$ activation map중 임의로 선택한 channel을 관찰합니다.( 여기서는 17th channel)  
+위와 마찬가지로, 128개의 $$ 13\times 13 $$ activation map중 임의로 선택한 channel을 관찰합니다.( 여기서는 17th channel)  
 이후 이미지를 네트워크에 넣은 뒤, 해당 channel의 activation값이 큰 순서대로 visualizing 합니다. 이를 보면 해당 뉴런이 찾고 있는 것을 알 수 있습니다. 
 ![maximally-activating](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/4-visual.PNG)  
 
 ##### 6. Occlusion Experiments
 이번 실험에서는, 이미지의 어떤 부분이 output을 결정하는데 중요한 역할을 하는지 알아보는 실험입니다. 이를 위해 이미지의 특정 부분을 block하고, 이에 대한 output의 확률 분포를 관찰합니다.  
 ![occlusion](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/5-visual.PNG)  
+이를 통해 이미지의 어떤 부분이 Image Classification에 중요한 역할을 하는지 알 수 있습니다.  
+
+##### 7. Saliency Map
+이번 방법은 **Classification에서 어떤 pixel이 중요한지?(영향을 많이 미치는지?)** 를 알아보기 위한 실험입니다.  
+이를 위해 class score에 대한 각 pixel의 gradient를 계산합니다. 
+![saliency](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/6-visual.PNG)  
+또한 Segmentation을 하기 위해서도 이런 방식이 사용되곤 합니다. 하지만 이런걸 이용하는 방식은 다루기도 힘들고, 성능도 좋지 않아 실제로 사용하지는 않습니다.  
+
+
+### 2. Visualizing CNN Features<a name="visual"></a>
+##### 1. Gradient Ascent
+특정 neuron값을 최대화하는 이미지를 새로 합성하는 방법입니다. weight는 고정하고 pixel 값을 수정하여 새로운 이미지를 합성합니다.  
+여기서 새로운 I는, $$ I = argmax_{I}{f(I)+R(I)}$$로, $$f(I)$$는 특정 neuron, $$R(I)$$는 이미지를 상대적으로 자연스럽게 만들기 위한 regularization term입니다.  
+강의에서는 간단하게 $$f(I)$$를 Score Function, $$R(I)$$를 L2 Norm 으로 설정한 후 실험을 진행하였습니다.  
+![gradientascent](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/7-visual.PNG)  
+이외에도 *Gaussian Blurring*이라는 regularization term 을 사용하면 더욱 자연스러운 결과를 얻을 수 있습니다.  
+  
+  
+##### 2. Fooling Image
+이미지를 고른 뒤, 특정 score값이 최대가 되도록 이미지를 합성합니다. 여기서는 코끼리 이미지에 코알라 score값이 최대가 되도록 합성을 했습니다.  
+![gradientascent](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/8-visual.PNG)  
+
+##### 3. Deep Dream  
+위에서처럼 특정 neuron value에 집중하기 보다, layer 자체를 "amplify" 합니다. 이를 통해 신기한(?) 이미지를 얻을 수 있습니다.
+![gradientascent](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/9-visual.PNG) 
+  
+##### 4. Feature Inversion
+Layer에서 이미지의 어떤 부분을 capture하고 있는지 찾는 방법입니다. ![gradientascent](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/10-visual.PNG)  
+relu2-2를 보면, 이미지의 대부분의 정보를 사용함을 알 수 있습니다. 하지만 레이어가 깊어질수록, 색상 등이 달라지며 Semantic한 정보를 사용함을 알 수 있습니다.  
+  
+##### 5. Texture Synthesis
+컴퓨터 그래픽에서 오래된 문제로, 작은 patch가 주어질 떄 더 큰 patch를 생성하는 방법입니다. Nearest Neighbor 등 고전적인 알고리즘이 존재합니다.  
+
+### 3. 요약
+1. CNN을 다양한 방법으로 시각화하고 이해할 수 있다.  
+2. activation map을 이용하는 방법 : Nearest Neighbor, Dimensionality Reduction 등  
+3. Gradient를 이용하는 방법 : Saliency Map, Fooling Image 등  
+
+### References
+[CS231N : Lecture 12](https://www.youtube.com/watch?v=6wcs6szJWMY&list=PLC1qU-LWwrF64f4QKQT-Vg5Wr4qEE1Zxk&index=13&t=0s)
