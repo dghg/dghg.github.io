@@ -58,7 +58,7 @@ activation map을 분석하는 경우 몇몇 case에서는 유의미한 결과�
 ##### 7. Saliency Map
 이번 방법은 **Classification에서 어떤 pixel이 중요한지?(영향을 많이 미치는지?)** 를 알아보기 위한 실험입니다.  
 이를 위해 class score에 대한 각 pixel의 gradient를 계산합니다. 
-![saliency](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/6-visual.PNG)  
+![saliency](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/7-visual.PNG) 
 또한 Segmentation을 하기 위해서도 이런 방식이 사용되곤 합니다. 하지만 이런걸 이용하는 방식은 다루기도 힘들고, 성능도 좋지 않아 실제로 사용하지는 않습니다.  
 
 
