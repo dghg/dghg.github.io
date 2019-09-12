@@ -71,7 +71,7 @@ VAE는 숨겨진 변수 **z**에 관한 식으로 확률분포함수를 정의�
   
 ##### AutoEncoder
 VAE의 원리가 되는 AutoEncoder는, unlabeled 데이터인 $$X$$로부터 $$z$$라는 feature를 뽑아냅니다.(Encoder) 이때 의미있는 feature을 얻기 위해  $$x$$보다 낮은 차원의 $$z$$를 뽑아냅니다.  
-이후, Decoder를 이용해 $$z$$로부터 $$x\hat$$을 생성합니다.
+이후, Decoder를 이용해 $$z$$로부터 $$x \hat $$을 생성합니다.
 ![VAE](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/5-gen.PNG)  
   
 여기서 AutoEncoder의 Encoder부분은 *Supervised Model*의 초기화에도 사용할 수 있습니다.   
@@ -79,10 +79,12 @@ VAE의 원리가 되는 AutoEncoder는, unlabeled 데이터인 $$X$$로부터 $$
 VAE도 마찬가지로 Encoder와 Decoder로 구성되어 있습니다.  
 첫번째로 Encoder의 역할은, $$x$$가 주어졌을 때 숨겨진 변수인 $$z$$에 대한 확률분포인 $$p_{\phi}(z|x)$$를 찾는 것입니다. 하지만 우리는 이런 확률분포가 무엇인지 모르기 때문에 간단한 확률분포인 **Gaussian Distribution**인 **$$q_{\phi}(z|x)$$** 로 대체합니다.  
   
-두번째로 Decoder는, $$z$$가 주어졌을 때 새로운 $$x$$를 만들어 내는것입니다.(p_{\theta}(x|z))  
+두번째로 Decoder는, $$z$$가 주어졌을 때 새로운 $$x$$를 만들어 내는것입니다.$$(p_{\theta}(x|z))$$
   
 이제 이 두 확률분포를 이용해 Maximum Likelihood를 구합니다.  
 ![VAE](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/6-gen.PNG)  
+  
+  
 ![VAE](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/7-gen.PNG)  
 
 
@@ -95,7 +97,7 @@ GAN는 *Discriminator, Generator*라는 두개의 네트워크로 구성됩니�
 ![GAN](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/8-gen.PNG) 
 
 GAN은 다음과 같은 minmax 문제를 푸는것으로 학습이 진행됩니다.  
-$$D$$는 Discriminator, $$G$$는 Generator를 의미하고, $$p_{data}(x)$$는 실제 데이터의 확률분포, $$p_{z}(z)$$는 노이즈 샘플링을 통해 생성한 데이터를 의미합니다.  
+$$D$$는 *Discriminator*, $$G$$는 *Generator*를 의미하고, $$p_{data}(x)$$는 실제 데이터의 확률분포, $$p_{z}(z)$$는 노이즈 샘플링을 통해 생성한 데이터를 의미합니다.  
   
 ![GAN](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/9-gen.PNG)  
   
