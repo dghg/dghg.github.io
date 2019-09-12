@@ -26,7 +26,9 @@ GANs는 다른 network에 비해 굉장히 많은 계산량을 필요로 하므�
 이번 글에서는, **MNIST** 데이터셋을 이용하여 간단한 GAN모델을 설계할 것입니다. 구현에 앞서, 일반적으로 GANs 모델에 발생하는 두가지 문제에 대해 알아볼 것 입니다.:  
 1. **Discriminator가 Generator를 압도한다** : 종종 Discriminator는 Generator에서 생성된 데이터를 모두 fake data로 분류합니다. 이를 교정하기 위해 Discriminator의 output을 Unscaled로 만듭니다.  
 2. **Mode Collapse**: Generator는 숫자와 상관없이 Discriminator를 속이기만 하면 되므로 z에 상관없이 계속해서 똑같은 숫자만 생성합니다.  
-
+  
+    
+    
 
 가장 우선, 필요한 라이브러리들과 MNIST 데이터셋을 불러옵니다.
 
