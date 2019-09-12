@@ -79,7 +79,7 @@ VAE의 원리가 되는 AutoEncoder는, unlabeled 데이터인 $$X$$로부터 $$
 VAE도 마찬가지로 Encoder와 Decoder로 구성되어 있습니다.  
 첫번째로 Encoder의 역할은, $$x$$가 주어졌을 때 숨겨진 변수인 $$z$$에 대한 확률분포인 $$p_{\phi}(z|x)$$를 찾는 것입니다. 하지만 우리는 이런 확률분포가 무엇인지 모르기 때문에 간단한 확률분포인 **Gaussian Distribution**인 **$$q_{\phi}(z|x)$$** 로 대체합니다.  
   
-두번째로 Decoder는, $$z$$가 주어졌을 때 새로운 $$x$$를 만들어 내는것입니다.$$(p_{\theta}(x|z))$$
+두번째로 Decoder는, $$z$$가 주어졌을 때 새로운 $$x$$를 만들어 내는것입니다.$$p_{\theta}(x|z)$$
   
 이제 이 두 확률분포를 이용해 Maximum Likelihood를 구합니다.  
 ![VAE](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/6-gen.PNG)  
