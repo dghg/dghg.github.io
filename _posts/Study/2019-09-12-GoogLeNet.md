@@ -13,7 +13,10 @@ categories:
 1. [Introduction](#intro)
 2. [Motivation](#motiv) 
 3. [Architectural Design](#des)
-
+4. [요약](#sum)
+  
+    
+    
 ### 0. 도입
 *GoogLeNet*은 이름에서 알 수 있듯이 google에서 만든 모델이고, ILSVRC 2014 classification에서 가장 좋은 정확도를 달성했습니다.
 
@@ -44,8 +47,38 @@ NiN(Network in Network) 에서처럼 1x1 Convolution을 사용하였습니다. *
   
 반대로 1x1 Convolution을 사용했을때, 총 계산량은 **5.3M**으로 사용하지 않았을 때와 큰 차이가 발생합니다.
 
+##### 2. Inception Module
+Inception Module은, 모델 내에서 *Sparsity*를 유지하면서 동시에 *Dense*한 연산을 최대화 하는 구조를 찾으며 만들어진 구조입니다.  
+![Inception](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/3-google.PNG)  
+  
+이렇듯 여러 종류의 *Conv*가 이전 레이어와 연결되어 있고 output들이 concatenated 되어 다음 레이어의 인풋으로 들어가게 됩니다. 이를 통해 과정은 *Sparsity*를 유지하는 동시에 *Dense*한 결과가 나올 수 있게 하였습니다.  
+하지만 이렇게 구성하게 되면 연산의 수가 많아지므로 1x1 Conv를 추가해 연산을 진행합니다.  
+![Inception](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/4-google.PNG)  
+  
+##### 3. Global Average Pooling
+Alexnet 등 기존 모델은 모델의 끝부분에 *FC Layer*를 사용하여 파라미터의 수가 증가하게 됩니다.  
+반면에 *GoogLeNet*은 Global Average Pooling을 사용하여 7x7의 feature map을 1개의 값으로 mapping해서 파라미터 없이 모델을 구성합니다.  
+  
+![Pooling](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/5-google.PNG)  
+  
+이렇게 모델을 구성함으로써 *FC Layer*를 사용할 때에 비해 top-1 accuracy가 0.6% 증가하는 효과를 볼 수 있었습니다.  
 
+##### 4. Auxiliary classifier
+gradient vanishing을 막고 regularizer 효과를 내는 보조적인 classifier를 추가하였습니다. 전체 loss에 이 classifier의 loss를 0.3비율로 포함하여 계산하였습니다.    
+또한 train 시에 사용하고 inference에는 제거하여 사용하지 않습니다.  
+  
+  
+  
+  
+##### Overall Architecture
+![architect](https://github.com/dghg/dghg.github.io/raw/master/_posts/img/6-google.PNG)  
+  
+총 22단의 Layer로 구성되었습니다.  
+### 4. 요약<a name="sum"></a>
+1. Inception을 사용해서 모델을 깊게 구성하였다.
+2. 연산량을 줄이기 위해 1x1 Conv를 사용하였다.
+3. 이를 통해 *ILSVRC14*에서 SOTA 달성
 
-### References
+### Reference 
 1. [Going Deeper With Convolutions](https://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf)  
 2. [Review : GoogLeNet(Inception v1)](https://medium.com/coinmonks/paper-review-of-googlenet-inception-v1-winner-of-ilsvlc-2014-image-classification-c2b3565a64e7)
