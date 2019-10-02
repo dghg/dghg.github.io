@@ -44,3 +44,34 @@ comments: false
 ##### 9.23(월)
 - Learning React 챕터4공부함.
 - velopert 8까지
+
+##### 9.24(화)
+- 너무 졸려서 공부를 못했다. Learning React 조금 봄
+
+##### 9.25(수)
+- NodeJS 책 도착!
+- 리액트 prop state 부분 공부. (chap 6)
+
+##### 9.26(목)
+- 러닝리액트 LifeCycle API, HOC, Flux 공부/실습함. >>복습
+
+##### 9.27(금)
+- 공부 하루 쉬었다
+
+##### 9.28(토)
+- 리액트 redux 부분 공부 > 실습
+
+##### 9.29(일)
+- react-redux 부분 공부, 실습
+- 러닝리액트 처음부터 한번 쭉 복습함
+
+##### 9.30(월)
+
+##### 10.1(화)
+- NodeJS chapter 3,4 공부
+- 야구보느라 공부를 못했다
+
+##### 10.2(수)
+- react-redux 복습
+- Deeplearning book 선형대수 공부
+
