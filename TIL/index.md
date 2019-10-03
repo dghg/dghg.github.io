@@ -74,4 +74,8 @@ comments: false
 ##### 10.2(수)
 - react-redux 복습
 - Deeplearning book 선형대수 공부
+- tensorflow Keras 공부 
 
+##### 10.3(목)
+- keras 공부
+- react로 calender 제작
