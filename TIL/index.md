@@ -79,3 +79,11 @@ comments: false
 ##### 10.3(목)
 - keras 공부
 - react로 calender 제작
+
+##### 10.4(금)
+- Decouled Neural ~ 논문 봄 : 너무 어렵다.. 다음에 더 공부하고 다시보기
+- NodeJs 공부
+- tensorflow 공부함
+
+##### 10.5(토)
+- react-router 공부
