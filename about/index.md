@@ -9,7 +9,7 @@ comments: false
 ## Interets
 * Machine Learning
 * Statistics
-* Web BE
+* Node
 
 ## Education
 * University Of Seoul (2017.3 ~)
