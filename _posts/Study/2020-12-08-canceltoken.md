@@ -10,7 +10,7 @@ categories:
 ---
 
 구글, 네이버 등 웹 서비스의 검색창에 검색어를 입력하면, 입력된 검색어에 맞춰 적절한 검색어를 제시해 준다.
-이는 검색어를 입력 받는 `Input`의 값이 변할 때 마다, API 요청을 통해 응답을 받아 화면에 렌더링 해주는 방식으로 구현해 볼 수 있다.
+이는 검색어를 입력 받는 `Input` 의 값이 변할 때 마다, API 요청을 통해 응답을 받아 화면에 렌더링 해주는 방식으로 구현해 볼 수 있다.
 이런 방식으로 구현한 리액트 컴포넌트는 다음과 같다.
 
 ```
@@ -34,7 +34,7 @@ const SearchForm: React.FunctionComponent = ({}) => {
 ```
 
 또한 이런 방식을 사용하고 있는 것이 네이버와 구글이다.
-![google](#https://github.com/dghg/dghg.github.io/blob/master/_posts/img/cancel1.PNG?raw=true)
+![google](https://github.com/dghg/dghg.github.io/blob/master/_posts/img/cancel1.PNG?raw=true)
 
 
 하지만 이런 방식들의 경우, 다음과 같은 문제점이 있다.
@@ -43,7 +43,8 @@ const SearchForm: React.FunctionComponent = ({}) => {
 
 이런 문제점을 해결하기 위해, 새로운 요청이 발생하면 이전에 발생한 모든 요청을 취소할 필요가 있다.
 
- ### CancelToken
+### CancelToken
+
  `axios` 라이브러리는 요청을 취소하기 위해 `CancelToken`이라는 API를 제공해 준다.
 
  `CancelToken.source()` 함수를 통해 `CancelToken`을 만들 수 있다.
@@ -81,12 +82,13 @@ const SearchForm: React.FunctionComponent = ({}) => {
   )
 }
 ```
+
 이렇게 구현한다면, 다음과 같이 최종 응답만 받고 나머지는 *canceled* 된다.
 
-![canceltoken](#https://github.com/dghg/dghg.github.io/blob/master/_posts/img/cancel1.PNG?raw=true)
+![canceltoken](https://github.com/dghg/dghg.github.io/blob/master/_posts/img/cancel1.PNG?raw=true)
 
 이렇게 `CancelToken`을 활용해 불필요한 비동기 요청들을 관리한다면, 리소스 낭비들을 줄이는 데 도움이 될 수 있을 것이다. 끝 !
 
 ### Referneces
 
-[Cancellation - Axios](#https://github.com/axios/axios#cancellation)
+[Cancellation - Axios](https://github.com/axios/axios#cancellation)
