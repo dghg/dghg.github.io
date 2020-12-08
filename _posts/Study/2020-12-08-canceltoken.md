@@ -85,7 +85,7 @@ const SearchForm: React.FunctionComponent = ({}) => {
 
 이렇게 구현한다면, 다음과 같이 최종 응답만 받고 나머지는 *canceled* 된다.
 
-![canceltoken](https://github.com/dghg/dghg.github.io/blob/master/_posts/img/cancel1.PNG?raw=true)
+![canceltoken](https://github.com/dghg/dghg.github.io/blob/master/_posts/img/cancel2.PNG?raw=true)
 
 이렇게 `CancelToken`을 활용해 불필요한 비동기 요청들을 관리한다면, 리소스 낭비들을 줄이는 데 도움이 될 수 있을 것이다. 끝 !
 
