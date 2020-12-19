@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Node에서의 비동기 에러 핸들 : try/catch"
+title: "[Node] 비동기 에러 핸들 : try/catch"
 date: 2020-11-28 00:00:00
 excerpt: ""
 tags:
